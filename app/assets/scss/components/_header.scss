@@ -1,0 +1,13 @@
+.header {
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    background: var(--gray_light);
+    display: flex;
+    gap: 8px;
+    .filters {
+        width: 100%;
+        will-change: width;
+    }
+}

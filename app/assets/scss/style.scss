@@ -5,11 +5,16 @@
 @import 'uttils/mixins';
 @import 'uttils/functions';
 
+// lib
+@import '../../node_modules/swiper/swiper.scss';
+@import '../../node_modules/swiper/swiper-vars.scss';
+
 :root {
     // fonts
-    --font-family-first: 'Roboto Flex', Arial, sans-serif;
-    --font-family-second: 'Roboto Mono', Arial, sans-serif;
-    --font-family-third: 'TTCommons', Arial, sans-serif;
+    --font-family-first: 'Inter', 'Roboto', Arial, sans-serif;
+    --font-family-second: 'Roboto Flex', 'Roboto', Arial, sans-serif;
+    --font-family-third: 'Roboto Mono', 'Roboto', Arial, sans-serif;
+    --font-family-fourth: 'TTCommons', 'Roboto', Arial, sans-serif;
 
     // z-index
     --z-index--100: 100;
@@ -26,6 +31,15 @@
     --tablet: 992px;
     --tablet-lg: 1180px;
     --desktop: 1440px;
+
+    // colors
+    --white: #fff;
+    --gray_light: #efeef4;
+    --gray_main: #5c6970;
+    --gray_dark: #2e3438;
+    --blue_light: #3625ff;
+    --blue_dark: #0c0099;
+    --red: #d35151;
 }
 
 html {
@@ -55,3 +69,12 @@ body.lock {
         flex: 0 1 auto;
     }
 }
+
+@import './typography';
+
+// base
+@import './base/button';
+
+// components
+@import './components/filters';
+@import './components/header';

@@ -9,8 +9,12 @@ export default defineNuxtConfig({
     css: ['~/assets/scss/style.scss'],
     runtimeConfig: {
         public: {
-            apiBase: '/api',
+            API: process.env.API,
         },
+    },
+    modules: ['@pinia/nuxt', 'nuxt-swiper'],
+    pinia: {
+        storesDirs: ['./store/**'],
     },
     devtools: { enabled: false },
 })
