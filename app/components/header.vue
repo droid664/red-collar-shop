@@ -4,6 +4,6 @@
             <slot name="left"></slot>
             <slot name="center"></slot>
         </div>
-        <slot name="bottom"></slot>
+        <slot name="right"></slot>
     </header>
 </template>

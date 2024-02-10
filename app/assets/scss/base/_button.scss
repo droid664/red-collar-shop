@@ -3,7 +3,10 @@
     background: var(--blue_light);
     transition: all 0.3s ease-in-out;
     transition-property: background, color;
-    @include MQmin(var(--tablet)) {
-        background: var(--blue_dark);
+    @include MQmin($tablet) {
+        &:hover {
+            background: var(--blue_dark);
+            color: var(--white);
+        }
     }
 }

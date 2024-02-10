@@ -7,6 +7,9 @@
             <template #center>
                 <Filters v-if="productsStore.categories.length" :data="productsStore.categories" />
             </template>
+            <template #right>
+                <BasketButton />
+            </template>
         </Header>
     </div>
 </template>

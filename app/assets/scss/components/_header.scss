@@ -6,6 +6,10 @@
     background: var(--gray_light);
     display: flex;
     gap: 8px;
+    min-width: 0;
+    * {
+        min-width: 0;
+    }
     &__wrapper {
         position: relative;
         display: flex;
