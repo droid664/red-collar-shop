@@ -6,8 +6,16 @@
     background: var(--gray_light);
     display: flex;
     gap: 8px;
-    .filters {
-        width: 100%;
-        will-change: width;
+    &__wrapper {
+        position: relative;
+        display: flex;
+        gap: 8px;
+        padding-left: 36px;
+        .search {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: var(--z-index--100);
+        }
     }
 }

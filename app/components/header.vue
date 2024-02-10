@@ -1,7 +1,9 @@
 <template>
     <header class="header">
-        <slot name="left"></slot>
-        <slot name="center"></slot>
+        <div class="header__wrapper">
+            <slot name="left"></slot>
+            <slot name="center"></slot>
+        </div>
         <slot name="bottom"></slot>
     </header>
 </template>
