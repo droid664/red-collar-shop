@@ -21,7 +21,7 @@
 const productsStore = useProducts()
 const router = useRouter()
 
-await productsStore.fetchGetProducts()
+await productsStore.fetchGetCategories()
 
 const handleChange = (value) => {
     router.push({

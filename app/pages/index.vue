@@ -17,5 +17,5 @@
 <script setup>
 const productsStore = useProducts()
 
-await productsStore.fetchGetProducts()
+await productsStore.fetchGetCategories()
 </script>
