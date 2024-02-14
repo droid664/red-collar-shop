@@ -1,4 +1,15 @@
 .catalog {
+    --grid-columns: 4;
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(var(--grid-columns), minmax(240px, 1fr));
+    @include MQmax($tablet) {
+        --grid-columns: 3;
+    }
+    @include MQmax($tablet-m) {
+        --grid-columns: 2;
+    }
+    @include MQmax($mobile) {
+        --grid-columns: 1;
+    }
 }
