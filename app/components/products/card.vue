@@ -1,41 +1,31 @@
 <template>
     <div class="card" :class="descriptionShow ? 'card--description' : ''">
         <div class="card__top" v-if="!descriptionShow">
-            <span class="card__sale font-s"> <b class="card__sale-value">12.96%</b> off sale </span>
-            <div class="card__image">
+            <span v-if="data.discountPercentage" class="card__sale font-s">
+                <b class="card__sale-value">{{ data.discountPercentage }}%</b> off sale
+            </span>
+            <div
+                v-if="data.images && Array.isArray(data.images) && data.images.length"
+                class="card__image"
+            >
                 <Swiper :modules="[SwiperPagination]" :pagination="pagination">
-                    <SwiperSlide>
+                    <SwiperSlide v-for="(item, i) of data.images" :key="i">
                         <div class="card__image-wrap">
-                            <img src="https://api.ex102.fvds.ru/uploads/1_fe28b65d2c.png" alt="" />
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div class="card__image-wrap">
-                            <img src="https://api.ex102.fvds.ru/uploads/1_fe28b65d2c.png" alt="" />
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div class="card__image-wrap">
-                            <img src="https://api.ex102.fvds.ru/uploads/1_fe28b65d2c.png" alt="" />
+                            <img :src="item" :alt="data.title" loading="lazy" fetchpriority="low" />
                         </div>
                     </SwiperSlide>
                 </Swiper>
             </div>
         </div>
         <div class="card__info">
-            <span class="card__rating font-s">
+            <span v-if="data.rating" class="card__rating font-s">
                 <UIIcon id="icon-star" className="card__rating-icon" />
-                4.69
+                {{ data.rating }}
             </span>
-            <span class="card__title font-s">Apple iPhone 9</span>
-            <div class="card__desc font-xs">
+            <span v-if="data.title" class="card__title font-s">{{ data.title }}</span>
+            <div v-if="data.description" class="card__desc font-xs">
                 <span class="card__desc-text">
-                    An apple mobile which is nothing like apple An apple mobile which is nothing
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, laudantium
-                    distinctio? Incidunt, et ut explicabo eum nam perspiciatis delectus ad dolore
-                    facere nulla amet quos necessitatibus aperiam blanditiis repudiandae excepturi!
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam temporibus
-                    magni praesentium necessitatibus
+                    {{ data.description }}
                 </span>
                 <button
                     @click="descriptionShow = !descriptionShow"
@@ -47,17 +37,41 @@
             </div>
         </div>
         <div class="card__price">
-            <button class="card__add font-s" type="button">
+            <button v-if="price" class="card__add font-s" type="button">
                 <UIIcon id="icon-basket" className="card__add-icon" />
-                $459
+                {{ formatPrice(price) }}
             </button>
-            <span class="card__price-old font-s" type="button">$685</span>
+            <span class="card__price-old font-s" type="button">{{ formatPrice(data.price) }}</span>
         </div>
     </div>
 </template>
 
 <script setup>
+const { data } = defineProps({
+    data: {
+        type: Object,
+        required: true,
+    },
+})
+
+const price = ref(0)
 const descriptionShow = ref(false)
+
+function formatPrice(price) {
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    })
+
+    return formatter.format(price)
+}
+
+const calcPrice = () => {
+    const discount = data.discountPercentage
+    const fullPrice = data.price
+
+    price.value = (fullPrice * (1 - discount / 100)).toFixed(2)
+}
 
 // Swiper config
 const pagination = {
@@ -66,4 +80,8 @@ const pagination = {
         return '<span class="' + className + '"></span>'
     },
 }
+
+onBeforeMount(() => {
+    calcPrice()
+})
 </script>

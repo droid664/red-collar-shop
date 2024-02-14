@@ -1,17 +1,18 @@
 <template>
     <div class="catalog">
-        <ProductsCard v-for="item of 16" />
+        <ProductsCard v-for="item of data" :key="item.id" :data="item" />
     </div>
 </template>
 
 <script setup>
-const loading = ref(true)
-const productsStore = useProducts()
-
-await productsStore.fetchGetProducts({
-    limit: 10,
-    skip: 0,
+const { data } = defineProps({
+    data: {
+        type: Array,
+        required: true,
+    },
 })
+
+const loading = ref(true)
 
 loading.value = false
 </script>
