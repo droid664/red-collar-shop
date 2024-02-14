@@ -37,10 +37,12 @@
             </div>
         </div>
         <div class="card__price">
-            <button v-if="price" class="card__add font-s" type="button">
-                <UIIcon id="icon-basket" className="card__add-icon" />
-                {{ formatPrice(price) }}
-            </button>
+            <ClientOnly>
+                <button v-if="price" class="card__add font-s" type="button">
+                    <UIIcon id="icon-basket" className="card__add-icon" />
+                    {{ formatPrice(price) }}
+                </button>
+            </ClientOnly>
             <span class="card__price-old font-s" type="button">{{ formatPrice(data.price) }}</span>
         </div>
     </div>

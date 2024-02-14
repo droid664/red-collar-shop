@@ -1,18 +1,42 @@
 <template>
-    <div class="catalog">
+    <div ref="$catalog" class="catalog">
         <ProductsCard v-for="item of data" :key="item.id" :data="item" />
     </div>
+    <UILoader v-if="loading" />
 </template>
 
 <script setup>
-const { data } = defineProps({
+const infiniteScroll = ref(undefined)
+
+const { data, loading, action } = defineProps({
     data: {
         type: Array,
         required: true,
     },
+    loading: {
+        type: Boolean,
+        default: false,
+    },
+    action: {
+        type: Function,
+        required: false,
+    },
 })
 
-const loading = ref(true)
+const $catalog = ref(null)
 
-loading.value = false
+onMounted(() => {
+    infiniteScroll.value = useInfiniteScroll($catalog.value, async () => {
+        if (!action) {
+            return
+        }
+
+        await action()
+    })
+})
+onBeforeUnmount(() => {
+    if (infiniteScroll.value) {
+        infiniteScroll.value.unsubscribe()
+    }
+})
 </script>
