@@ -7,10 +7,10 @@ export const useProducts = defineStore('products', {
 
         return {
             API,
-            products: [],
+            products: undefined,
             categories: [],
-            loading: false,
-            error: null,
+            products: undefined,
+            error: false,
         }
     },
     actions: {
@@ -38,7 +38,7 @@ export const useProducts = defineStore('products', {
         async fetchGetProducts(params = {}) {
             let url = '/products'
 
-            // Категории
+            // Категории и поиск
             if ('category' in params) {
                 url += `/category/${params.category}`
             } else if ('searchQuery' in params) {
@@ -53,7 +53,7 @@ export const useProducts = defineStore('products', {
             }
 
             if ('skip' in params) {
-                query.skip = params.limit
+                query.skip = params.skip
             }
 
             if ('searchQuery' in params) {
@@ -64,10 +64,8 @@ export const useProducts = defineStore('products', {
                 query.select = params.select
             }
 
-            query = qs.stringify(query)
-
             if (Object.keys(query).length) {
-                url += `?${query}`
+                url += `?${qs.stringify(query)}`
             }
 
             try {
@@ -76,7 +74,7 @@ export const useProducts = defineStore('products', {
                 })
 
                 if (data.value) {
-                    this.products = data.value
+                    this.setProducts(data.value, Boolean(query.skip))
                 }
 
                 if (error.value) {
@@ -84,6 +82,13 @@ export const useProducts = defineStore('products', {
                 }
             } catch (error) {
                 console.log('fetchGetProducts error: ', error)
+            }
+        },
+        setProducts(data, loadMore) {
+            if (loadMore) {
+                this.products.products.push(...data.products)
+            } else {
+                this.products = data
             }
         },
     },

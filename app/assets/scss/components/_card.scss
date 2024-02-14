@@ -1,0 +1,159 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    min-height: 468px;
+    padding: 16px;
+    font-weight: 500;
+    background: var(--gray_light);
+    min-width: 0;
+    * {
+        min-width: 0;
+    }
+    &__image {
+        display: flex;
+        width: 100%;
+        min-height: 288px;
+        &-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        img {
+            display: block;
+            max-width: 100%;
+            max-height: 180px;
+            object-fit: contain;
+        }
+    }
+    &__info {
+        margin-top: auto;
+        min-height: 100px;
+        max-height: 380px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    &__sale {
+        &-value {
+            color: var(--blue_light);
+        }
+    }
+    &__rating {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: 8px;
+        &-icon {
+            width: 15px;
+            aspect-ratio: 1;
+            fill: var(--blue_light);
+        }
+    }
+    &__sale,
+    &__rating {
+        background: var(--white);
+    }
+    &__sale,
+    &__rating,
+    &__add {
+        border-radius: 4px;
+        padding: 4px;
+    }
+    &__desc,
+    &__title {
+        hyphens: auto;
+        word-break: break-word;
+    }
+    &__title {
+        @include text-line-camp(3);
+        margin-bottom: 8px;
+    }
+    &__desc {
+        position: relative;
+        margin-bottom: 8px;
+        color: var(--gray_main);
+        &-text {
+            a {
+                display: block;
+            }
+        }
+        &-button {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            bottom: 2px;
+            right: 0;
+            background: var(--gray_light);
+            border: none;
+            color: var(--blue_light);
+            cursor: pointer;
+            &::before {
+                content: '...';
+                margin-left: 3px;
+                margin-right: 10px;
+                color: var(--gray_main);
+                pointer-events: none;
+            }
+        }
+    }
+    &:not(.card--description) {
+        // Уменьшаем описание до двух строк, елси оно скрыто
+        .card__desc-text {
+            @include text-line-camp(2);
+        }
+    }
+    &__add {
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        background: var(--blue_light);
+        border: none;
+        &-icon {
+            width: 17px;
+            height: 14px;
+            fill: var(--white);
+            margin-right: 5px;
+        }
+    }
+    &__price {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        &-old {
+            color: var(--gray_main);
+            text-decoration: line-through;
+        }
+    }
+    .swiper {
+        &-wrapper {
+            align-items: stretch;
+        }
+        &-slide {
+            min-height: 100%;
+            height: auto;
+        }
+        &-pagination {
+            bottom: 24px;
+        }
+    }
+    &--description {
+        .card__info {
+            margin-top: initial;
+        }
+        .card__price {
+            margin-top: auto;
+        }
+        .card__desc-button {
+            position: static;
+            display: block;
+            inset: 0;
+            &::before {
+                display: none;
+            }
+        }
+        .card__desc-button {
+            margin-top: 4px;
+        }
+    }
+}

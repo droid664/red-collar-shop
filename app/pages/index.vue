@@ -11,6 +11,8 @@
                 <BasketButton />
             </template>
         </Header>
+
+        <ProductsCatalog />
     </div>
 </template>
 
