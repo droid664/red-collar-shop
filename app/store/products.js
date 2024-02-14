@@ -41,27 +41,15 @@ export const useProducts = defineStore('products', {
             // Категории и поиск
             if ('category' in params) {
                 url += `/category/${params.category}`
-            } else if ('searchQuery' in params) {
+            } else if ('q' in params) {
                 url += `/search`
             }
 
             let query = {}
 
             // Query
-            if ('limit' in params) {
-                query.limit = params.limit
-            }
-
-            if ('skip' in params) {
-                query.skip = params.skip
-            }
-
-            if ('searchQuery' in params) {
-                query.q = params.searchQuery
-            }
-
-            if ('select' in params) {
-                query.select = params.select
+            if ('q' in params) {
+                query.q = params.q
             }
 
             if (Object.keys(query).length) {

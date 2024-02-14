@@ -29,12 +29,11 @@ const router = useRouter()
 const productsStore = useProducts()
 
 let category = route.query?.category
+let q = route.query?.q
 
 await productsStore.fetchGetCategories()
 
 const loadProducts = async () => {
-    loading.value = true
-
     const payload = {
         limit: limit.value,
         skip: skip.value,
@@ -44,18 +43,23 @@ const loadProducts = async () => {
         payload.category = category
     }
 
-    await productsStore.fetchGetProducts(payload)
+    if (q) {
+        payload.q = q
+    }
 
-    loading.value = false
+    await productsStore.fetchGetProducts(payload)
 }
 
 loadProducts()
 
 const loadMore = async () => {
     if (!loading.value && productsStore.products.products.length < productsStore.products.total) {
+        loading.value = true
         skip.value += 10
 
         await loadProducts()
+
+        loading.value = false
     }
 }
 
@@ -63,6 +67,7 @@ watch(
     () => router,
     async () => {
         category = route.query?.category
+        q = route.query?.q
         skip.value = 0
 
         await loadProducts()

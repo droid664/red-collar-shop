@@ -3,6 +3,7 @@
         <ProductsCard v-for="item of data" :key="item.id" :data="item" />
     </div>
     <UILoader v-if="loading" />
+    <p v-if="!loading && data && !data.length">Ничего не найдено, попробуйте изменить запрос</p>
 </template>
 
 <script setup>
