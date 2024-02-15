@@ -48,6 +48,14 @@ export const useProducts = defineStore('products', {
             let query = {}
 
             // Query
+            if ('limit' in params) {
+                query.limit = params.limit
+            }
+
+            if ('skip' in params) {
+                query.skip = params.skip
+            }
+
             if ('q' in params) {
                 query.q = params.q
             }
