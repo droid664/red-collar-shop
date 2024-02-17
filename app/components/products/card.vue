@@ -54,6 +54,8 @@
 </template>
 
 <script setup>
+import { formatPrice } from '~/helpers/formatPrice.js'
+
 const basketStore = useBasket()
 
 const { data } = defineProps({
@@ -74,16 +76,8 @@ const addToBasket = () => {
         title,
         thumbnail,
         count: 1,
+        price: price.value,
     })
-}
-
-const formatPrice = (price) => {
-    const formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    })
-
-    return formatter.format(price)
 }
 
 const calcPrice = () => {

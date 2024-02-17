@@ -23,5 +23,8 @@ export const useBasket = defineStore('basket', {
 
             this.products = JSON.parse(localStorage.getItem('redCollarShopBasket'))
         },
+        clear() {
+            this.products = []
+        },
     },
 })

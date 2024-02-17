@@ -1,0 +1,21 @@
+.button-close {
+    width: 12px;
+    aspect-ratio: 1;
+    position: relative;
+    cursor: pointer;
+    background: none;
+    border: none;
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        width: 10px;
+        border-top: 1px solid var(--gray_main);
+    }
+    &::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+}
