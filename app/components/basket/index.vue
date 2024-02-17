@@ -10,25 +10,7 @@
             </header>
             <div class="basket__content">
                 <ul v-if="IS_EMPTY" class="basket__list">
-                    <li class="basket__item" v-for="p of products" :key="p.id">
-                        <div class="basket__image small-image">
-                            <img
-                                class="basket__image"
-                                :src="p.thumbnail"
-                                :alt="p.title"
-                                loading="lazy"
-                                fetchpriority="low"
-                            />
-                        </div>
-                        <div class="basket__item-wrap">
-                            <div class="basket__info">
-                                <h3 class="basket__item-title font-s">{{ p.title }}</h3>
-                                <span class="basket__item-price font-s">{{
-                                    formatPrice(p.price)
-                                }}</span>
-                            </div>
-                        </div>
-                    </li>
+                    <BasketItem v-for="p of products" :data="p" :key="p.id" />
                 </ul>
                 <p v-else class="basket__empty">cart is empty :(</p>
             </div>
@@ -51,8 +33,6 @@
 </template>
 
 <script setup>
-import { formatPrice } from '~/helpers/formatPrice'
-
 const UI = useUI()
 const basketStore = useBasket()
 const { products } = storeToRefs(basketStore)
