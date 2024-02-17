@@ -9,6 +9,7 @@
             </div>
         </div>
 
+        <Notification />
         <Basket />
         <UISprite />
     </div>

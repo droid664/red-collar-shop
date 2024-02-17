@@ -1,13 +1,7 @@
 <template>
     <li ref="$product" class="basket__item" :class="is_delete ? 'basket__item--delete' : ''">
         <div class="basket__image small-image">
-            <img
-                class="basket__image"
-                :src="data.thumbnail"
-                :alt="data.title"
-                loading="lazy"
-                fetchpriority="low"
-            />
+            <img :src="data.thumbnail" :alt="data.title" loading="lazy" fetchpriority="low" />
         </div>
         <div class="basket__item-wrap">
             <div class="basket__info">
