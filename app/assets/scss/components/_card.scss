@@ -116,6 +116,22 @@
             fill: var(--white);
             margin-right: 5px;
         }
+        &--added {
+            background: var(--white);
+            color: var(--blue_light);
+            .card__add-icon {
+                fill: var(--blue_light);
+            }
+            @include MQmin($tablet) {
+                &:hover {
+                    background: var(--white);
+                    color: var(--blue_light);
+                    .card__add-icon {
+                        fill: var(--blue_light);
+                    }
+                }
+            }
+        }
     }
     &__price {
         display: flex;

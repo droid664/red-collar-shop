@@ -42,10 +42,14 @@
                     v-if="price"
                     @click="addToBasket(item)"
                     class="card__add font-s"
+                    :class="notificationAdded ? 'card__add--added' : ''"
                     type="button"
                 >
                     <UIIcon id="icon-basket" className="card__add-icon" />
-                    {{ formatPrice(price) }}
+                    <template v-if="notificationAdded"> added to cart </template>
+                    <template v-else>
+                        {{ formatPrice(price) }}
+                    </template>
                 </button>
             </ClientOnly>
             <span class="card__price-old font-s" type="button">{{ formatPrice(data.price) }}</span>
@@ -57,6 +61,8 @@
 import { formatPrice } from '~/helpers/formatPrice.js'
 
 const basketStore = useBasket()
+const UI = useUI()
+const notificationAdded = ref(false)
 
 const { data } = defineProps({
     data: {
@@ -71,13 +77,28 @@ const descriptionShow = ref(false)
 const addToBasket = () => {
     const { id, title, thumbnail } = data
 
-    basketStore.addProduct({
-        id,
-        title,
-        thumbnail,
-        count: 1,
-        price: price.value,
-    })
+    const isAdded = basketStore.products.find((p) => p.id == id)
+
+    // TODO: если товар уже добавлен в корзину, то просто открываем её, чтобы избежать дублирования в корзине
+    if (isAdded) {
+        UI.$patch({
+            isBasketShow: true,
+        })
+    } else {
+        notificationAdded.value = true
+
+        basketStore.addProduct({
+            id,
+            title,
+            thumbnail,
+            count: 1,
+            price: price.value,
+        })
+
+        setTimeout(() => {
+            notificationAdded.value = false
+        }, 3000)
+    }
 }
 
 const calcPrice = () => {
