@@ -10,4 +10,8 @@ const basketStore = useBasket()
 basketStore.$subscribe(() => {
     basketStore.saveToLocalStorage()
 })
+
+onMounted(() => {
+    basketStore.getLocalStorage()
+})
 </script>

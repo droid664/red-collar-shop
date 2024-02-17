@@ -38,7 +38,12 @@
         </div>
         <div class="card__price">
             <ClientOnly>
-                <button v-if="price" class="card__add font-s" type="button">
+                <button
+                    v-if="price"
+                    @click="addToBasket(item)"
+                    class="card__add font-s"
+                    type="button"
+                >
                     <UIIcon id="icon-basket" className="card__add-icon" />
                     {{ formatPrice(price) }}
                 </button>
@@ -49,6 +54,8 @@
 </template>
 
 <script setup>
+const basketStore = useBasket()
+
 const { data } = defineProps({
     data: {
         type: Object,
@@ -59,7 +66,18 @@ const { data } = defineProps({
 const price = ref(0)
 const descriptionShow = ref(false)
 
-function formatPrice(price) {
+const addToBasket = () => {
+    const { id, title, thumbnail } = data
+
+    basketStore.addProduct({
+        id,
+        title,
+        thumbnail,
+        count: 1,
+    })
+}
+
+const formatPrice = (price) => {
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
