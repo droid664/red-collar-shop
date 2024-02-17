@@ -51,11 +51,6 @@ const handleWindowKeyUp = ({ code }) => {
     }
 }
 
-const submitOrder = () => {
-    basketStore.clear()
-    alert('Заказ оформлен!')
-}
-
 const IS_EMPTY = computed(() => {
     return Boolean(products.value.length)
 })
@@ -69,6 +64,11 @@ const BASKET_SUM = computed(() => {
             return (acc += current)
         })
 })
+
+const submitOrder = () => {
+    alert(`An order for ${formatPrice(BASKET_SUM.value)} has been placed!`)
+    basketStore.clear()
+}
 
 onMounted(() => {
     window.addEventListener('keyup', handleWindowKeyUp)
