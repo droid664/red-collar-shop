@@ -36,7 +36,7 @@ export const useProducts = defineStore('products', {
             }
         },
         async fetchGetProducts(params = {}) {
-            let url = '/productss'
+            let url = '/products'
 
             // Категории и поиск
             if ('category' in params) {

@@ -11,7 +11,6 @@
                 type="text"
                 placeholder="Search..."
                 :tabindex="show ? '0' : '-1'"
-                @blur=""
             />
         </div>
         <button @click="clear" class="search__clear" type="button"></button>
@@ -26,6 +25,7 @@ const searchValue = ref('')
 const route = useRoute()
 const router = useRouter()
 const show = ref(false)
+const notificationStore = useNotification()
 
 const handleChange = () => {
     const length = searchValue.value.length
@@ -38,6 +38,10 @@ const handleChange = () => {
     if (length > 3) {
         router.push({
             query,
+        })
+    } else if (show.value) {
+        notificationStore.add({
+            title: 'The request must be longer than 3 characters',
         })
     }
 }
@@ -63,7 +67,7 @@ const clear = () => {
 }
 
 watch(searchValue, () => {
-    dFn(true)
+    dFn()
 })
 
 watch(show, (val) => {
