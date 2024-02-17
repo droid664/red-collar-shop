@@ -13,6 +13,7 @@
         </Header>
 
         <ProductsCatalog
+            v-if="productsStore.products"
             :data="productsStore.products.products"
             :loading="loading"
             :action="loadMore"

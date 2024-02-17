@@ -10,6 +10,8 @@
                 class="search__input font-m"
                 type="text"
                 placeholder="Search..."
+                :tabindex="show ? '0' : '-1'"
+                @blur=""
             />
         </div>
         <button @click="clear" class="search__clear" type="button"></button>

@@ -11,7 +11,9 @@
         </div>
     </div>
     <UILoader v-if="loading" />
-    <p v-if="!loading && data && !data.length">Ничего не найдено, попробуйте изменить запрос</p>
+    <p class="catalog__empty font-xl" v-if="!loading && data && !data.length">
+        Nothing found, try changing your query
+    </p>
 </template>
 
 <script setup>

@@ -16,6 +16,7 @@
         border-bottom: 1px solid var(--white);
     }
     &__decor-grid {
+        pointer-events: none;
         position: absolute;
         top: 0;
         left: 0;
@@ -53,5 +54,11 @@
         @include MQmax($mobile) {
             --grid-columns: 1;
         }
+    }
+    &__empty {
+        padding-top: 100px;
+        padding-bottom: 100px;
+        margin-bottom: 0;
+        text-align: center;
     }
 }
