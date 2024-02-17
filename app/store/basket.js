@@ -14,14 +14,24 @@ export const useBasket = defineStore('basket', {
             this.products = this.products.filter((p) => p.id !== id)
         },
         saveToLocalStorage() {
-            localStorage.setItem('redCollarShopBasket', JSON.stringify(this.products))
+            try {
+                localStorage.setItem('redCollarShopBasket', JSON.stringify(this.products))
+            } catch (error) {
+                console.error('Local storage error: ' + error)
+            }
         },
         getLocalStorage() {
-            const data = JSON.parse(localStorage.getItem('redCollarShopBasket'))
+            let data
+
+            try {
+                data = JSON.parse(localStorage.getItem('redCollarShopBasket'))
+            } catch (error) {
+                console.error('Local storage error: ' + error)
+            }
 
             if (!data) return
 
-            this.products = JSON.parse(localStorage.getItem('redCollarShopBasket'))
+            this.products = data
         },
         clear() {
             this.products = []
