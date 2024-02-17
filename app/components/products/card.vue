@@ -98,7 +98,7 @@ const addToBasket = () => {
 
         notificationStore.add({
             title,
-            desc: data.desc ?? '',
+            desc: data.description ?? '',
             thumbnail,
         })
 

@@ -56,6 +56,7 @@
             font-weight: 500;
             hyphens: auto;
             word-break: break-word;
+            @include text-line-camp(2);
         }
     }
 }
