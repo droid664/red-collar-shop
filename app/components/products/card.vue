@@ -62,6 +62,7 @@ import { formatPrice } from '~/helpers/formatPrice.js'
 
 const basketStore = useBasket()
 const UI = useUI()
+const notificationStore = useNotification()
 const notificationAdded = ref(false)
 
 const { data } = defineProps({
@@ -93,6 +94,12 @@ const addToBasket = () => {
             thumbnail,
             count: 1,
             price: price.value,
+        })
+
+        notificationStore.add({
+            title,
+            desc: data.desc ?? '',
+            thumbnail,
         })
 
         setTimeout(() => {
