@@ -1,0 +1,14 @@
+.button-more {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    .button {
+        border: none;
+        height: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: var(--white);
+    }
+}

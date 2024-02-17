@@ -36,6 +36,8 @@ export const useProducts = defineStore('products', {
             }
         },
         async fetchGetProducts(params = {}) {
+            this.error = false
+
             let url = '/products'
 
             // Категории и поиск
@@ -75,10 +77,12 @@ export const useProducts = defineStore('products', {
 
                 if (error.value) {
                     console.error('fetchGetProducts error: ', error.value)
+                    this.error = true
                     alert('The request failed with an error')
                 }
             } catch (error) {
                 console.log('fetchGetProducts error: ', error)
+                this.error = true
                 alert('The request failed with an error')
             }
         },

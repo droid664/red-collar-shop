@@ -18,6 +18,7 @@
             :loading="loading"
             :action="loadMore"
         />
+        <UIButtonMore v-if="productsStore.error" @click="loadProducts" />
     </div>
 </template>
 
