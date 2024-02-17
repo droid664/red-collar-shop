@@ -17,10 +17,10 @@
             <footer class="basket__footer">
                 <template v-if="IS_EMPTY">
                     <span class="basket__positions">{{ products.length }} positions</span>
-                    <span class="basket__sum">{{ BASKET_SUM }}</span>
+                    <span class="basket__sum">{{ formatPrice(BASKET_SUM) }}</span>
                 </template>
                 <button
-                    @click="!IS_EMPTY ? closeBasket() : () => {}"
+                    @click="!IS_EMPTY ? closeBasket() : submitOrder()"
                     class="basket__button"
                     type="button"
                 >
@@ -33,6 +33,8 @@
 </template>
 
 <script setup>
+import { formatPrice } from '~/helpers/formatPrice'
+
 const UI = useUI()
 const basketStore = useBasket()
 const { products } = storeToRefs(basketStore)
@@ -47,6 +49,11 @@ const handleWindowKeyUp = ({ code }) => {
     if (code === 'Escape') {
         closeBasket()
     }
+}
+
+const submitOrder = () => {
+    basketStore.clear()
+    alert('Заказ оформлен!')
 }
 
 const IS_EMPTY = computed(() => {

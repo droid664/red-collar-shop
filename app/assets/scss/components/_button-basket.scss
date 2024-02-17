@@ -1,4 +1,5 @@
 .button-basket {
+    position: relative;
     border-radius: 4px;
     background: var(--white);
     border: none;
@@ -19,12 +20,40 @@
         transition: fill 0.3s ease;
         flex-shrink: 0;
     }
+    &__count {
+        --size: 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3px;
+        border-radius: 20px;
+        min-width: var(--size);
+        height: var(--size);
+        position: absolute;
+        top: calc(var(--size) * -0.5);
+        left: calc(100% + var(--size) * -0.5);
+        background: var(--white);
+        color: var(--blue_light);
+        font-weight: 500;
+    }
     @include MQmin($tablet) {
         &:hover {
             background: var(--blue_light);
             color: var(--white);
             .button-basket__icon {
                 fill: var(--white);
+            }
+        }
+    }
+    &--not-empty {
+        background: var(--blue_light);
+        @include MQmin($tablet) {
+            color: var(--white);
+            .button-basket__icon {
+                fill: var(--white);
+            }
+            &:hover {
+                background: var(--blue_dark);
             }
         }
     }
