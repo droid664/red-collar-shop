@@ -1,0 +1,44 @@
+.counter {
+    width: 72px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: var(--gray_light);
+    button,
+    input {
+        width: 100%;
+    }
+    &__decr,
+    &__inc,
+    &__value {
+        background: none;
+        border: none;
+        height: 24px;
+    }
+    &__decr,
+    &__inc {
+        position: relative;
+        cursor: pointer;
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: calc(50% - 1px);
+            left: calc(50% - 4px);
+            width: 8px;
+            border-top: 2px solid var(--gray_dark);
+        }
+    }
+    &__decr {
+        &::after {
+            display: none;
+        }
+    }
+    &__inc {
+        &::before {
+            transform: rotate(90deg);
+        }
+    }
+    &__value {
+        text-align: center;
+    }
+}

@@ -8,6 +8,7 @@
                 <h3 class="basket__item-title font-s">{{ data.title }}</h3>
                 <span class="basket__item-price font-s">{{ formatPrice(data.price) }}</span>
             </div>
+            <UICounter @update="handleUpdateCount" :value="Number(count)" />
         </div>
         <button @click="removeProduct" type="button" class="basket__delete">
             <UIIcon id="icon-trash" className="basket__delete-icon" />
@@ -22,6 +23,7 @@ import { formatPrice } from '~/helpers/formatPrice'
 const basketStore = useBasket()
 const $product = ref(false)
 const is_delete = ref(false)
+const count = ref(1)
 
 const { data } = defineProps({
     data: {
@@ -29,6 +31,12 @@ const { data } = defineProps({
         required: true,
     },
 })
+
+const handleUpdateCount = (val) => {
+    count.value = val
+
+    basketStore.updateCount(data.id, count.value)
+}
 
 const removeProduct = () => {
     is_delete.value = true
@@ -42,4 +50,8 @@ const removeProduct = () => {
         basketStore.removeProduct(data.id)
     })
 }
+
+onMounted(() => {
+    count.value = data.count
+})
 </script>

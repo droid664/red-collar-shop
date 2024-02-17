@@ -12,6 +12,8 @@
             </template>
         </Header>
 
+        <UICounter @update="handleUpdate" :value="Number(test)" />
+
         <ProductsCatalog
             v-if="productsStore.products"
             :data="productsStore.products.products"
@@ -23,12 +25,17 @@
 </template>
 
 <script setup>
+const test = ref(1)
 const loading = ref(false)
 const limit = ref(10)
 const skip = ref(0)
 const route = useRoute()
 const router = useRouter()
 const productsStore = useProducts()
+
+const handleUpdate = (val) => {
+    test.value = val
+}
 
 let category = route.query?.category
 let q = route.query?.q

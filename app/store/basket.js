@@ -13,6 +13,15 @@ export const useBasket = defineStore('basket', {
         removeProduct(id) {
             this.products = this.products.filter((p) => p.id !== id)
         },
+        updateCount(id, newCount) {
+            this.products = this.products.map((item) => {
+                if (item.id === id) {
+                    item.count = newCount
+                }
+
+                return item
+            })
+        },
         saveToLocalStorage() {
             try {
                 localStorage.setItem('redCollarShopBasket', JSON.stringify(this.products))
