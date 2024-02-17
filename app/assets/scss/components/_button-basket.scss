@@ -47,14 +47,12 @@
     }
     &--not-empty {
         background: var(--blue_light);
-        @include MQmin($tablet) {
-            color: var(--white);
-            .button-basket__icon {
-                fill: var(--white);
-            }
-            &:hover {
-                background: var(--blue_dark);
-            }
+        color: var(--white);
+        .button-basket__icon {
+            fill: var(--white);
+        }
+        &:hover {
+            background: var(--blue_dark);
         }
     }
 }
