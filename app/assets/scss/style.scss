@@ -15,9 +15,6 @@
 :root {
     // fonts
     --font-family-first: 'Inter', 'Roboto', Arial, sans-serif;
-    --font-family-second: 'Roboto Flex', 'Roboto', Arial, sans-serif;
-    --font-family-third: 'Roboto Mono', 'Roboto', Arial, sans-serif;
-    --font-family-fourth: 'TTCommons', 'Roboto', Arial, sans-serif;
 
     // z-index
     --z-index--100: 100;
@@ -74,6 +71,18 @@ body.lock {
     &-bottom {
         flex: 0 1 auto;
     }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+span {
+    letter-spacing: -0.02em;
 }
 
 @import './typography';
