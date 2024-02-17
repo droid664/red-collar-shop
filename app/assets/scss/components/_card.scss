@@ -88,12 +88,18 @@
             border: none;
             color: var(--blue_light);
             cursor: pointer;
+            transition: color 0.3s ease;
             &::before {
                 content: '...';
                 margin-left: 3px;
                 margin-right: 10px;
                 color: var(--gray_main);
                 pointer-events: none;
+            }
+            @include MQmin($tablet) {
+                &:hover {
+                    color: var(--blue_dark);
+                }
             }
         }
     }
