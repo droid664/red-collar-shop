@@ -17,7 +17,7 @@
             <footer class="basket__footer">
                 <template v-if="IS_EMPTY">
                     <span class="basket__positions">{{ products.length }} positions</span>
-                    <span class="basket__sum">$2196</span>
+                    <span class="basket__sum">{{ BASKET_SUM }}</span>
                 </template>
                 <button
                     @click="!IS_EMPTY ? closeBasket() : () => {}"
@@ -51,6 +51,16 @@ const handleWindowKeyUp = ({ code }) => {
 
 const IS_EMPTY = computed(() => {
     return Boolean(products.value.length)
+})
+
+const BASKET_SUM = computed(() => {
+    if (!products.value.length) return 0
+
+    return products.value
+        .map((p) => +p.price)
+        .reduce((acc, current) => {
+            return (acc += current)
+        })
 })
 
 onMounted(() => {
