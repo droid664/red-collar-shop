@@ -1,6 +1,14 @@
 <template>
     <div ref="$catalog" class="catalog">
-        <ProductsCard v-for="item of data" :key="item.id" :data="item" />
+        <div v-for="item of data" :key="item.id" class="catalog__item">
+            <ProductsCard :data="item" />
+        </div>
+        <div class="catalog__decor-grid">
+            <div class="catalog__decor-grid-item"></div>
+            <div class="catalog__decor-grid-item"></div>
+            <div class="catalog__decor-grid-item"></div>
+            <div class="catalog__decor-grid-item"></div>
+        </div>
     </div>
     <UILoader v-if="loading" />
     <p v-if="!loading && data && !data.length">Ничего не найдено, попробуйте изменить запрос</p>
