@@ -7,6 +7,11 @@
         &:checked ~ .filters__custom {
             background: var(--blue_light);
             color: var(--white);
+            padding-left: 18px;
+            &::before {
+                opacity: 1;
+                transform: none;
+            }
         }
     }
     &__item {
@@ -23,6 +28,21 @@
         padding-right: 8px;
         transition: all 0.3s ease;
         transition-property: color, background, padding;
+        position: relative;
+        &::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: calc(50% - 3px);
+            border-radius: 50%;
+            width: 6px;
+            height: 6px;
+            background: var(--white);
+            transition: all 0.2s ease;
+            transition-property: transform, opacity;
+            opacity: 0;
+            transform: translateX(-50%);
+        }
     }
     .swiper {
         &-slide {
