@@ -59,7 +59,7 @@ const BASKET_SUM = computed(() => {
     if (!products.value.length) return 0
 
     return products.value
-        .map((p) => +p.price)
+        .map((p) => +p.price * +p.count)
         .reduce((acc, current) => {
             return (acc += current)
         })
