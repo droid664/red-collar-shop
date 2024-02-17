@@ -19,6 +19,8 @@ const UI = useUI()
 const { products } = storeToRefs(basketStore)
 
 const handleClick = () => {
+    basketStore.getLocalStorage()
+
     UI.$patch({
         isBasketShow: true,
     })
