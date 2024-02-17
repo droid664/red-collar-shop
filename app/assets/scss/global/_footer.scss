@@ -1,0 +1,28 @@
+.footer {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 14px;
+    padding-right: 14px;
+    &__inner {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+    }
+    &__shop {
+        text-decoration: none;
+        color: var(--gray_dark);
+    }
+    &__icon {
+        justify-self: center;
+        svg {
+            width: 14px;
+            aspect-ratio: 1;
+            fill: var(--gray_dark);
+        }
+    }
+    &__develop {
+        display: block;
+        justify-self: end;
+        max-width: 143px;
+    }
+}
