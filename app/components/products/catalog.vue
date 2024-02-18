@@ -3,12 +3,6 @@
         <div v-for="item of data" :key="item.id" class="catalog__item">
             <ProductsCard :data="item" />
         </div>
-        <div class="catalog__decor-grid">
-            <div class="catalog__decor-grid-item"></div>
-            <div class="catalog__decor-grid-item"></div>
-            <div class="catalog__decor-grid-item"></div>
-            <div class="catalog__decor-grid-item"></div>
-        </div>
     </div>
     <UILoader v-if="loading" />
     <p class="catalog__empty font-xl" v-if="!loading && data && !data.length">
